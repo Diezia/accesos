@@ -3,104 +3,107 @@ P: pinta, S: selecciona, E:escribe
 OBJETIVO ACADÉMICO: familiarizarme con OOP y SQLite3.
 OBJETIVO: crear un script de Python utilizando OOP y SQLite3 que sea capaz de realizar una serie de operaciones en una base de datos.
 Entonces.. ¿Qué se podrá realizar con este script?:
--Crear tablas (categorías).
--Crear, consultar y eliminar registros (ID autoincremental, clave, valor).
+    -Crear tablas (categorías).
+    -Crear, consultar y eliminar registros (ID autoincremental, clave, valor).
 Se comienza analizando casos puntuales para crear una abstracción de la problemática:
-caso 1:
-1- operaciones de registro
-    1. consultar 
-    2. crear 
-    3. eliminar
-1-1. elige un servicio: (tabla)
-    1. triptongo
-    2. redes sociales
-1-1.1. elige un acceso: (registro)
-    1. nirma
-    2. yomi
-caso 1 comentarios: se identifican 3 instancias -> P-S:operación de registro. P-S:elección de servicio, P-S:elección de acceso.
+    caso 1:
+    1- operaciones de registro
+        1. consultar 
+        2. crear 
+        3. eliminar
+    1-1. elige un servicio: (tabla)
+        1. triptongo
+        2. redes sociales
+    1-1.1. elige un acceso: (registro)
+        1. nirma
+        2. yomi
+    caso 1 comentarios: se identifican 3 instancias -> P-S:operación de registro. P-S:elección de servicio, P-S:elección de acceso.
 
-caso 2: 
-1- operaciones de registro
-    1. consultar 
-    2. crear 
-    3. eliminar
-1-2. elige o crea un servicio:
-    0. crear un nuevo servicio (añadiría una tabla nueva)
-    1. triptongo
-    2. redes sociales
-1-2.0. nombre del servicio.
-1-2.0.0 crea un acceso.
-caso 2 comentarios: 4 instancias -> P-S:operaciones de registro, P-S:creación de servicio, P-E:nombre del servicio, P-E:nombre del acceso
+    caso 2: 
+    1- operaciones de registro
+        1. consultar 
+        2. crear 
+        3. eliminar
+    1-2. elige o crea un servicio:
+        0. crear un nuevo servicio (añadiría una tabla nueva)
+        1. triptongo
+        2. redes sociales
+    1-2.0. nombre del servicio.
+    1-2.0.0 crea un acceso.
+    caso 2 comentarios: 4 instancias -> P-S:operaciones de registro, P-S:creación de servicio, P-E:nombre del servicio, P-E:nombre del acceso
 
-caso 3:
-1- operaciones de registro
-    1. consultar 
-    2. crear 
-    3. eliminar
-1-2. elige o crea un servicio:
-    0. crear un nuevo servicio (añadiría una tabla nueva)
-    1. triptongo
-    2. redes sociales
-1-2.1 crea un acceso.
-caso 3 comentarios: 3 instancias -> P-S:operaciones de registro, P-S:elección de servicio, P-E:creación del acceso
+    caso 3:
+    1- operaciones de registro
+        1. consultar 
+        2. crear 
+        3. eliminar
+    1-2. elige o crea un servicio:
+        0. crear un nuevo servicio (añadiría una tabla nueva)
+        1. triptongo
+        2. redes sociales
+    1-2.1 crea un acceso.
+    caso 3 comentarios: 3 instancias -> P-S:operaciones de registro, P-S:elección de servicio, P-E:creación del acceso
 
 
 
 Lista de tareas que realiza la aplicación:
--crear categoría.
-    -cuando se selecciona "crear nuevo registro" se da la opción de elegir una categoría existente o crear una. Si se selecciona crear una nueva: 
-    -variable "nombre_categoria_nueva" y se le asigna con un input.
-    -se agrega el nombre_categoria_nueva al formato de sqlite3 para crear la tabla.
+    -crear categoría.
+        -cuando se selecciona "crear nuevo registro" se da la opción de elegir una categoría existente o crear una. Si se selecciona crear una nueva categoría: 
+            -variable "nombre_categoria_nueva" y se le asigna con un input.
+            -se agrega el nombre_categoria_nueva al formato de sqlite3 para crear la tabla.
+    -crear registro.
+    -consultar registro.
+    -eliminar registro.
+    -validaciones.
+    -mostrar textos en pantalla.
 
--crear registro.
--consultar registro.
--eliminar registro.
--validaciones.
--mostrar textos en pantalla.
-
-
-Clases necesarias: Registro, Categoría, Validaciones, MostrarEnPantalla, Selectores.
-Registro:
-    -métodos: consultar tabla, consultar registro, mostrar registro.
-Categoría:
-    -métodos:
 
 
 Planificación:
 -Puesto que siempre se va a mostrar el mensaje "operaciones de registro" (y sus respectivas opciones) al inicio del programa, es correcto almacenarlo en una constante "OPERACIONES_REGISTRO" que podría estar definida en el constructor de la clase MostrarEnPantalla.
 
 
-# otra forma de pensarlo es: ir almacenando las acciones (consultar registro, crear tabla, etc) y luego según sean esas variables almacenadas, realizar las operaciones de base de datos en una clase particular para eso. Las ventajas de esto es que dejaría el código más limpio.
+# otra forma de pensarlo es: ir almacenando las acciones (consultar registro, crear tabla, etc) y luego según sean esas variables almacenadas, realizar las operaciones de base de datos en una clase particular para eso.
 
 Flujo del programa:
 -Se muestra en pantalla "elige una opción" (consultar, crear, eliminar)
     -Si se elige consultar: se almacena "1" en la variable "accion" para llamar al selector correspondiente.
         -Se muestra en pantalla "elige un servicio (tabla_uno, tabla_2, etc)".
-            -Se almacena en la variable categoria_elegida_usuario el nombre de la tabla elegida.
-                -Se muestra en pantalla la variable elige_un_acceso que contiene el str "elige un acceso: " + ID y Nombre de los registros correspondientes a la categoria_elegida_usuario.
-                    -El usuario elige mediante el ID el acceso. Se lo almacena en la variable acceso_elegido_usuario y printea en pantalla.
-                        -Con estos datos (accion, categoria_elegida_usuario, acceso_elegido_usuario) se obtiene la contraseña correspondiente con métodos de sqlite3 y se la printea en pantalla.
-                            -TERMINADO "CONSULTAR". Solo faltan copiar a portapapeles y colores.
-                            -TERMINADO "CONSULTAR". Solo faltan copiar a portapapeles y colores.
-                            -TERMINADO "CONSULTAR". Solo faltan copiar a portapapeles y colores.
+        -Se almacena en la variable categoria_elegida_usuario el nombre de la tabla elegida.
+        -Se muestra en pantalla la variable elige_un_acceso que contiene el str "elige un acceso: " + ID y Nombre de los registros correspondientes a la categoria_elegida_usuario.
+        -El usuario elige mediante el ID el acceso. Se lo almacena en la variable acceso_elegido_usuario y printea en pantalla.
+        -Con estos datos (accion, categoria_elegida_usuario, acceso_elegido_usuario) se obtiene la contraseña correspondiente con métodos de sqlite3 y se la printea en pantalla.
     -Si se elige crear: se almacena "2" en la variable "accion".
-        -Se muestra en pantalla "elige o crea un servicio (crea un srvicio, tabla_uno, tabla_2, etc)".
+        -Se muestra en pantalla "elige o crea un servicio (crea un servicio, tabla_uno, tabla_2, etc)".
             -Si se elige crear servicio: se muestra un mensaje "ingrese el nombre del servicio que se desea crear" con un input. Y se almacena en la variable nombre_del_servicio_creado. Con métodos de sqlite3 se crea una nueva tabla con nombre nombre_del_servicio_creado.
                 -se muestra un mensaje "ingrese el nombre del acceso que se desea crear" con un input. Y se almacena en la variable nombre_del_acceso_creado. 
                 -se muestra un mensaje "ingrese la contraseña del acceso que se desea crear" con un input. Y se almacena en la variable contraseña_del_acceso_creado.
-                -con métodos de sqlite3 se crea un nuevo registro con Nombre nombre nombre_del_acceso_creado y Contraseña contraseña_del_acceso_creado en la tabla nombre_del_servicio_creado.
-                -se muestra un mensaje operacion_finalizada cuyo contenido es el string "Operación finalizada".
+                -con métodos de sqlite3 se crea un nuevo registro con Nombre nombre_del_acceso_creado y Contraseña contraseña_del_acceso_creado en la tabla nombre_del_servicio_creado.
+                -se muestra un mensaje OPERACION_FINALIZADA cuyo contenido es el string "Operación finalizada".
             -Si se elige un servicio existente (es decir, crear un acceso en una categoría existente):
                 -Se almacena en variable categoria_elegida_usuario el nombre de la tabla elegida.
                 -se muestra un mensaje "ingrese el nombre del acceso que se desea crear" con un input. Y se almacena en la variable nombre_del_acceso_creado.
                 -se muestra un mensaje "ingrese la contraseña del acceso que se desea crear" con un input. Y se almacena en la variable contraseña_del_acceso_creado.
-                -con métodos de sqlite3 se crea un nuevo registro con Nombre nombre nombre_del_acceso_creado y Contraseña contraseña_del_acceso_creado en la tabla categoria_elegida_usuario.
-    -Si se elige eliminar:
-        -Si se elige eliminar: se almacena "3" en la variable "accion".
-            -Se muestra en pantalla "elige un servicio (tabla_uno, tabla_2, etc)".
-                -Se almacena en variable categoria_elegida_usuario el nombre de la tabla elegida.
-                    -Se muestra en pantalla el mensaje mensaje_registro_a_eliminar que tiene el string "selecciones el registro a eliminar" + ID y Nombre de los registros correspondientes a la categoria_elegida_usuario.
-                        -con métodos de sqlite3 se elimina el registro correspondiente.
+                -con métodos de sqlite3 se crea un nuevo registro con Nombre nombre_del_acceso_creado y Contraseña contraseña_del_acceso_creado en la tabla categoria_elegida_usuario.
+    -Si se elige eliminar: se almacena "3" en la variable "accion".
+        -Se muestra en pantalla "elige un servicio (tabla_uno, tabla_2, etc)".
+        -Se almacena en variable categoria_elegida_usuario el nombre de la tabla elegida.
+        -Se muestra en pantalla el mensaje mensaje_registro_a_eliminar que tiene el string "selecciones el registro a eliminar" + ID y Nombre de los registros correspondientes a la categoria_elegida_usuario.
+        -con métodos de sqlite3 se elimina el registro correspondiente.
+
+en el flujo del programa se muestran cosas como 'almacena "3" en la variable "accion"'. Esto es para trabajar con selectores, pero si se divide el código en secciones pensadas como en "tema aparte", esto no sería necesario.
+-------AHORA-------
+
+Programación del flujo del programa (expresar como se encarararía cada parte del flujo con programación):
+---SEGUIR ACÁ---
+# quedaría todo medianamente similar solo que la clase Selectores se vería reemplazada (y un poco modificada) por AccionesDeUsuario??
+
+Clases: MostrarEnPantalla, 
+-------AHORA fin-------
+
+
+
+
 
 
 CReeeeo que no van a hacer falta selectores porque si almaceno en accion lo que tengo que hacer, voy mostrando los mensajes correspondientes. Parala ahí. Si se tiene que usar el selector.
@@ -109,44 +112,43 @@ CReeeeo que no van a hacer falta selectores porque si almaceno en accion lo que 
 El gran problema que se está experimentando es el de crear un flujo que muestre clases y métodos sencillos.
 
 # Tema aparte
-Una forma de hacer reemplazo de if con clases es esta:
-class Clase1(object):
-    def entrada1(self, eleccion_usuario1):
-        if eleccion_usuario == 1:
-            # hacer cosas
-        elif eleccion_usuario == 2:
-            # hacer cosas
-        ...
-        else:
-            pass
-    def entrada2(self, eleccion_usuario2):
-        if eleccion_usuario == 1:
-            # hacer cosas
-        elif eleccion_usuario == 2:
-            # hacer cosas
-        ...
-        else:
-            pass
-    def entrada3(self, eleccion_usuario3):
-        if eleccion_usuario == 1:
-            # hacer cosas
-        elif eleccion_usuario == 2:
-            # hacer cosas
-        ...
-        else:
-            pass
-clase1 = Clase1()
-eleccion_usuario1 = int(input("elija 1, 2 o 3:"))
-clase1.entrada1(eleccion_usuario1)
-eleccion_usuario2 = int(input("elija 1, 2 o 3:"))
-clase1.entrada2(eleccion_usuario2)
-eleccion_usuario3 = int(input("elija 1, 2 o 3:"))
-clase1.entrada3(eleccion_usuario3)
+posible reestruccturación del código:
+    #adu = Acción De Usuario
+    class AccionesDeUsuario(object):
+        '''Almacena las acciones de los usuario elegidas o realizadas por el usuario'''
+        def adu1(self, eleccion_usuario1):
+            if eleccion_usuario == 1:
+                # hacer cosas
+            elif eleccion_usuario == 2:
+                # hacer cosas
+            ...
+            else:
+                raise_exception
+        def adu2(self, eleccion_usuario2):
+            if eleccion_usuario == 1:
+                # hacer cosas
+            elif eleccion_usuario == 2:
+                # hacer cosas
+            ...
+            else:
+                raise_exception
+        def adu3(self, eleccion_usuario3):
+            if eleccion_usuario == 1:
+                # hacer cosas
+            elif eleccion_usuario == 2:
+                # hacer cosas
+            ...
+            else:
+                raise_exception
+    clase1 = AccionesDeUsuario()
+    eleccion_usuario1 = int(input("elija 1, 2 o 3:"))
+    clase1.adu1(eleccion_usuario1)
+    eleccion_usuario2 = int(input("elija 1, 2 o 3:"))
+    clase1.adua2(eleccion_usuario2)
+    eleccion_usuario3 = int(input("elija 1, 2 o 3:"))
+    clase1.adu3(eleccion_usuario3)
 # por fuera de posibles errores de sintaxis, se entiende el flujo. Descripción corta: se divide el código en secciones (métodos) en las que en cada sección estaría marcada por la acción del usuario (por ejemplo la elección de una opción, el ingreso de un nombre de categoría, el ingreso de un nombre de registro, etc). Se divide cada método en "ifs" que, según sea la opción elegida, van armando la consulta en una variable de clase (self.consulta).
 # Fin Tema aparte
 
---- A SEGUIR A SEGUIR A SEGUIR A SEGUIR A SEGUIR A SEGUIR ---
-A SEGUIR: Con lo visto en "tema aparte" parece que tendría que refactorizar todo el código.
-Antes de empezar con la refactorización voy a crear un proyecto git e ir comitiando los cambios. Para una vez terminado el proyecto, subirlo a mi repo en github.
-
-Incluir excepciones en los métodos para ver cuando y donde fallan.
+-CHECK. Antes de empezar con la refactorización voy a crear un proyecto git e ir comitiando los cambios. Para una vez terminado el proyecto, subirlo a mi repo en github.
+-Incluir excepciones en los métodos para ver cuando y donde fallan.
